@@ -49,7 +49,6 @@ public:
 	char* str;
 	int length;	int n = 0; // число обращений к строке
 
-	Srep(int, const char*);
 
 	Srep* getOwnCopy();
 
@@ -57,10 +56,12 @@ public:
 
 	~Srep();
 private:
+	friend class String;
 	/* конструктор копирования и операция присвоения
 	 * перемещены в private область
 	 * чтобы не было лишних копирований
 	 * */
+	Srep(int, const char*);
 	Srep(const Srep&);
 	Srep& operator=(const Srep&);
 };

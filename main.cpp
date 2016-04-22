@@ -97,11 +97,17 @@ TEST_F(StringTest, TestOperatorAdd)
 	string2 = String("foo       ");
 	EXPECT_EQ(String("foo       foo       "), string1 + string2);
 
+	string1 = String("  abcd");
+	string2 = String(" dcba");
+	EXPECT_EQ(String("  abcd dcba"), string1 + string2);
+
 	string1 = String("abcd");
 	string2 = String("dcba");
 	EXPECT_EQ(String("abcddcba"), string1 + string2);
 
-
+	string1 = String("abcdddddddddddd");
+	string2 = String("dcba");
+	EXPECT_EQ(String("abcdddddddddddddcba"), string1 + string2);
 }
 int main(int argc, char **argv)
 {

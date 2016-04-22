@@ -6,12 +6,11 @@
 #include <string.h>
 #include <iostream>
 
-class String;
 class Srep;
 class Cref;
-class Range;
 
-class String {
+class String
+{
 	Srep *srep;
 public:
 	String();
@@ -35,6 +34,7 @@ public:
 	Cref operator[](int);
 	char operator[](int) const;
 
+	void copy(char*, int, int);
 	void check(int) const;
 	void write(int, char);
 
@@ -44,7 +44,8 @@ public:
 	~String();
 };
 
-class Srep {
+class Srep
+{
 public:
 	char* str;
 	int length;	int n = 0; // число обращений к строке
@@ -75,6 +76,18 @@ public:
 	operator char() const;
 
 	void operator=(char);
+};
+
+class Sref
+{
+	friend class String;
+	String& string;
+	int iBegin;
+	int iEnd;
+	Sref(String&, int, int);
+public:
+	operator char*() const;
+	void operator =(char*);
 };
 
 class Range

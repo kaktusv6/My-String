@@ -1,4 +1,5 @@
 #include "String.h"
+
 /* class String ======================================= */
 
 /* methods class String ======================================= */
@@ -81,6 +82,12 @@ String& String::operator+= (const char* str)
 	srep->length += strlen(str);
 	this->srep = srep;
 	return *this;
+}
+void String::copy(char* ch, int index, int count)
+{
+	ch = new char[count];
+	for (int i = index, j = 0; j < count; ++i, j++)
+		ch[j] = this->srep->str[i];
 }
 String::~String()
 {

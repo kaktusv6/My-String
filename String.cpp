@@ -186,3 +186,10 @@ void Cref::operator=(char ch)
 {
 	string.write(index, ch);
 }
+
+/* methods class Sref ======================================= */
+
+Sref::operator char*() const
+{
+	return ch;
+}

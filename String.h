@@ -8,6 +8,7 @@
 
 class Srep;
 class Cref;
+class Sref;
 
 class String
 {
@@ -34,7 +35,7 @@ public:
 	Cref operator[](int);
 	char operator[](int) const;
 
-	void copy(char*, int, int);
+	Sref& copy(int, int) const;
 	void check(int) const;
 	void write(int, char);
 
@@ -49,7 +50,6 @@ class Srep
 public:
 	char* str;
 	int length;	int n = 0; // число обращений к строке
-
 
 	Srep* getOwnCopy();
 
@@ -80,11 +80,13 @@ public:
 
 class Sref
 {
-	friend class String;
-	String& string;
+	friend  class String;
+	char *ch;
 	int iBegin;
 	int iEnd;
-	Sref(String&, int, int);
+	Sref () {}
+	Sref(int, int);
+	Sref(char*, int, int);
 public:
 	operator char*() const;
 	void operator =(char*);

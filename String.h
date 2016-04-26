@@ -89,7 +89,6 @@ class Sref
 	Sref(char*, int, int);
 public:
 	operator char*() const;
-	void operator =(char*);
 };
 
 class Range

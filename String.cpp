@@ -135,15 +135,17 @@ bool operator!= (const String& str1, const String& str2)
 }
 String operator+ (const String& str, const char* ch)
 {
-	char *c = str.srep->str;
-	strcat(c, ch);
-	return String(c);
+	String string(str.srep->str);
+	strcat(string.srep->str, ch);
+	string.srep->length = (int)strlen(string.srep->str);
+	return string;
 }
 String operator+ (const String& str1, const String& str2)
 {
-	char *ch = str1.srep->str;
-	strcat(ch, str2.srep->str);
-	return String(ch);
+	String string(str1.srep->str);
+	strcat(string.srep->str, str2.srep->str);
+	string.srep->length = (int)strlen(string.srep->str);
+	return string;
 }
 
 /* methods class Srep ======================================= */

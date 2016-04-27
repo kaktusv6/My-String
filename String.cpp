@@ -112,8 +112,9 @@ std::ostream& operator<< (std::ostream& out, const String& string)
 }
 std::istream& operator>> (std::istream& in, String& string)
 {
-	Srep *srep = string.srep->getOwnCopy();
-	in >> srep->str;
+	string.srep = string.srep->getOwnCopy();
+	in >> string.srep->str;
+	string.srep->length = (int)strlen(string.srep->str);
 	return in;
 }
 bool operator== (const String& str, const char* ch)

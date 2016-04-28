@@ -108,6 +108,15 @@ TEST_F(StringTest, TestOperatorAdd)
 	string1 = String("abcdddddddddddd");
 	string2 = String("dcba");
 	EXPECT_EQ(String("abcdddddddddddddcba"), string1 + string2);
+
+	string1 = String("abcdddddddddddd");
+	EXPECT_EQ(String("abcdddddddddddddcba"), string1 + "dcba");
+
+	string1 = String("abcdd");
+	EXPECT_EQ(String("abcddcba"), string1 + "cba");
+
+	string1 = String("abcd");
+	EXPECT_EQ(String("abcddcba"), string1 + "dcba");
 }
 int main(int argc, char **argv)
 {

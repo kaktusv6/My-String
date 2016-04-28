@@ -63,6 +63,15 @@ char String::read(int i) const
 {
 	return srep->str[i];
 }
+char* String::read(int iBegin, int iEnd) const
+{
+	char *c = new char;
+	int j = 0;
+	for (int i = iBegin; i <= iEnd; ++i, j++)
+		c[j] = srep->str[i];
+	c[j + 1] = '\0';
+	return c;
+}
 int String::size() const
 {
 	return srep->length;
@@ -87,11 +96,6 @@ Sref String::copy(int index, int count)
 {
 	check(index);
 	check(index + count);
-	char c[] = "";
-	int j = 0;
-	for (int i = index; i < index + count; ++i, ++j)
-		c[j] = this->srep->str[i];
-	c[j + 1] = '\0';
 	return Sref(*this, index, index + count);
 }
 String::~String()

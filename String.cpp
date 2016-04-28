@@ -85,11 +85,11 @@ String& String::operator+= (const char* str)
 }
 Sref& String::copy(int index, int count) const
 {
-	check(index - 1);
-	check(index + count - 1);
+	check(index);
+	check(index + count);
 	char *c = new char;
 	int j = 0;
-	for (int i = index - 1; i < index + count; ++i)
+	for (int i = index; i <= index + count; ++i, j++)
 	{
 		c[j] = this->srep->str[i];
 		j++;

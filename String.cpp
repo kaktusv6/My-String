@@ -13,6 +13,10 @@ String::String(const String& _string)
 	_string.srep->n++;
 	srep = _string.srep;
 }
+String::String(const char* _str)
+{
+	srep = new Srep((int)strlen(_str), _str);
+}
 String& String::operator=(const String& _string)
 {
 	_string.srep->n++;
@@ -20,18 +24,14 @@ String& String::operator=(const String& _string)
 	srep = _string.srep;
 	return *this;
 }
-String::String(const char* _str)
-{
-	srep = new Srep(strlen(_str), _str);
-}
 String& String::operator=(const char* _str)
 {
 	if (srep->n == 1)
-		srep = new Srep(strlen(_str), _str);
+		srep = new Srep((int)strlen(_str), _str);
 	else
 	{
 		srep->n--;
-		srep = new Srep(strlen(_str), _str);
+		srep = new Srep((int)strlen(_str), _str);
 	}
 	return *this;
 }
@@ -83,14 +83,16 @@ String& String::operator+= (const char* str)
 	this->srep = srep;
 	return *this;
 }
-Sref String::copy(int index, int count) const
+Sref String::copy(int index, int count)
 {
 	check(index);
 	check(index + count);
 	char c[] = "";
-	for (int i = index, j = 0; i < index + count; ++i, ++j)
+	int j = 0;
+	for (int i = index; i < index + count; ++i, ++j)
 		c[j] = this->srep->str[i];
-	return Sref(c, index, index + count);
+	c[j + 1] = '\0';
+	return Sref(*this, index, index + count);
 }
 String::~String()
 {
@@ -186,13 +188,11 @@ void Cref::operator=(char ch)
 
 /* methods class Sref ======================================= */
 
-Sref::Sref(char *_ch, int _iBegin, int _iEnd)
-{
-	ch = _ch;
-	iBegin = _iBegin;
-	iEnd = _iEnd;
-}
+Sref::Sref(String& str, int _iBegin, int _iEnd) : string(str),
+												  iBegin(_iBegin),
+												  iEnd(_iEnd)
+{  }
 Sref::operator char*() const
 {
-	return ch;
+	return string.read(iBegin, iEnd);
 }

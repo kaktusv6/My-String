@@ -40,7 +40,8 @@ public:
 	void write(int, char);
 
 	char read(int) const;
-
+	char* read(int, int) const;
+	
 	int size() const;
 	~String();
 };
@@ -81,11 +82,10 @@ public:
 class Sref
 {
 	friend  class String;
-	char *ch;
+	String& string;
 	int iBegin;
 	int iEnd;
-	Sref () {}
-	Sref(char*, int, int);
+	Sref(String&, int, int);
 public:
 	operator char*() const;
 };

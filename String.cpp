@@ -83,20 +83,14 @@ String& String::operator+= (const char* str)
 	this->srep = srep;
 	return *this;
 }
-Sref& String::copy(int index, int count) const
+Sref String::copy(int index, int count) const
 {
 	check(index);
 	check(index + count);
-	char *c = new char;
-	int j = 0;
-	for (int i = index; i <= index + count; ++i, j++)
-	{
+	char c[] = "";
+	for (int i = index, j = 0; i < index + count; ++i, ++j)
 		c[j] = this->srep->str[i];
-		j++;
-	}
-	c[j + 1] = '\0';
-	Sref sref(c, index - 1, index + count - 1);
-
+	return Sref(c, index, index + count);
 }
 String::~String()
 {
@@ -192,6 +186,12 @@ void Cref::operator=(char ch)
 
 /* methods class Sref ======================================= */
 
+Sref::Sref(char *_ch, int _iBegin, int _iEnd)
+{
+	ch = _ch;
+	iBegin = _iBegin;
+	iEnd = _iEnd;
+}
 Sref::operator char*() const
 {
 	return ch;

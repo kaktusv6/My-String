@@ -35,7 +35,7 @@ public:
 	Cref operator[](int);
 	char operator[](int) const;
 
-	Sref& copy(int, int) const;
+	Sref copy(int, int) const;
 	void check(int) const;
 	void write(int, char);
 
@@ -85,7 +85,6 @@ class Sref
 	int iBegin;
 	int iEnd;
 	Sref () {}
-	Sref(int, int);
 	Sref(char*, int, int);
 public:
 	operator char*() const;

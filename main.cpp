@@ -130,6 +130,26 @@ TEST_F(StringTest, TestOperatorAdd)
 	string1 = String("labudalabuda");
 	EXPECT_EQ(String("labudalabudalabuda"), "labuda" + string1);
 }
+TEST_F(StringTest, TestLengthString)
+{
+	string1 = "abcd";
+	EXPECT_EQ(4, string1.size());
+
+	string1 = "lambdalambdalambda";
+	EXPECT_EQ(18, string1.size());
+
+	string1 = "labudafignyaigara";
+	EXPECT_EQ(17, string1.size());
+
+	string1 = "1";
+	EXPECT_EQ(1, string1.size());
+
+	string1 = "12";
+	EXPECT_EQ(2, string1.size());
+
+	string1 = "";
+	EXPECT_EQ(0, string1.size());
+}
 int main(int argc, char **argv)
 {
 	testing::InitGoogleTest(&argc, argv);

@@ -150,6 +150,18 @@ TEST_F(StringTest, TestLengthString)
 	string1 = "";
 	EXPECT_EQ(0, string1.size());
 }
+TEST_F(StringTest, TestOperatorBrackets)
+{
+	string1 = "asdlaga";
+	EXPECT_EQ('a', string1[0]);
+	EXPECT_EQ('s', string1[1]);
+	EXPECT_EQ('d', string1[2]);
+	EXPECT_EQ('l', string1[3]);
+	EXPECT_EQ('a', string1[4]);
+	EXPECT_EQ('g', string1[5]);
+	EXPECT_EQ('a', string1[6]);
+
+}
 int main(int argc, char **argv)
 {
 	testing::InitGoogleTest(&argc, argv);

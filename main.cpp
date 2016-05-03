@@ -162,6 +162,19 @@ TEST_F(StringTest, TestOperatorBrackets)
 	EXPECT_EQ('a', string1[6]);
 
 }
+TEST_F(StringTest, TestCopy)
+{
+	string1 = "hello, World!!";
+	ASSERT_EQ("he", string1.copy(0, 2));
+	ASSERT_EQ("h", string1.copy(0, 1));
+	ASSERT_EQ("ello", string1.copy(1, 4));
+	ASSERT_EQ("ello", string1.copy(1, 4));
+	ASSERT_EQ("o", string1.copy(4, 1));
+	ASSERT_EQ("o, W", string1.copy(4, 4));
+	ASSERT_EQ("", string1.copy(0, 0));
+	ASSERT_EQ("hello, World!!", string1.copy(0, string1.size()));
+}
+
 int main(int argc, char **argv)
 {
 	testing::InitGoogleTest(&argc, argv);

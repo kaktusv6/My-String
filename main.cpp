@@ -83,83 +83,83 @@ TEST_F(StringTest, TestOperatorAdd)
 {
 	string1 = String("asd");
 	string2 = String("asd");
-	EXPECT_EQ(String("asdasd"), string1 + string2);
+	ASSERT_EQ(String("asdasd"), string1 + string2);
 
 	string1 = String("q");
 	string2 = String("rt");
-	EXPECT_EQ(String("qrt"), string1 + string2);
+	ASSERT_EQ(String("qrt"), string1 + string2);
 
 	string1 = String("Hello ");
 	string2 = String("my friend!!");
-	EXPECT_EQ(String("Hello my friend!!"), string1 + string2);
+	ASSERT_EQ(String("Hello my friend!!"), string1 + string2);
 
 	string1 = String("foo       ");
 	string2 = String("foo       ");
-	EXPECT_EQ(String("foo       foo       "), string1 + string2);
+	ASSERT_EQ(String("foo       foo       "), string1 + string2);
 
 	string1 = String("  abcd");
 	string2 = String(" dcba");
-	EXPECT_EQ(String("  abcd dcba"), string1 + string2);
+	ASSERT_EQ(String("  abcd dcba"), string1 + string2);
 
 	string1 = String("abcd");
 	string2 = String("dcba");
-	EXPECT_EQ(String("abcddcba"), string1 + string2);
+	ASSERT_EQ(String("abcddcba"), string1 + string2);
 
 	string1 = String("abcdddddddddddd");
 	string2 = String("dcba");
-	EXPECT_EQ(String("abcdddddddddddddcba"), string1 + string2);
+	ASSERT_EQ(String("abcdddddddddddddcba"), string1 + string2);
 
 	string1 = String("abcdddddddddddd");
-	EXPECT_EQ(String("abcdddddddddddddcba"), string1 + "dcba");
+	ASSERT_EQ(String("abcdddddddddddddcba"), string1 + "dcba");
 
 	string1 = String("abcdd");
-	EXPECT_EQ(String("abcddcba"), string1 + "cba");
+	ASSERT_EQ(String("abcddcba"), string1 + "cba");
 
 	string1 = String("abcd");
-	EXPECT_EQ(String("abcddcba"), string1 + "dcba");
+	ASSERT_EQ(String("abcddcba"), string1 + "dcba");
 
 	string1 = String("labudalabuda");
-	EXPECT_EQ(String("labudalabudalabuda"), string1 + "labuda");
+	ASSERT_EQ(String("labudalabudalabuda"), string1 + "labuda");
 
 	string1 = String("abcdd");
-	EXPECT_EQ(String("cbaabcdd"), "cba" + string1);
+	ASSERT_EQ(String("cbaabcdd"), "cba" + string1);
 
 	string1 = String("abcd");
-	EXPECT_EQ(String("dcbaabcd"), "dcba" + string1);
+	ASSERT_EQ(String("dcbaabcd"), "dcba" + string1);
 
 	string1 = String("labudalabuda");
-	EXPECT_EQ(String("labudalabudalabuda"), "labuda" + string1);
+	ASSERT_EQ(String("labudalabudalabuda"), "labuda" + string1);
 }
 TEST_F(StringTest, TestLengthString)
 {
 	string1 = "abcd";
-	EXPECT_EQ(4, string1.size());
+	ASSERT_EQ(4, string1.size());
 
 	string1 = "lambdalambdalambda";
-	EXPECT_EQ(18, string1.size());
+	ASSERT_EQ(18, string1.size());
 
 	string1 = "labudafignyaigara";
-	EXPECT_EQ(17, string1.size());
+	ASSERT_EQ(17, string1.size());
 
 	string1 = "1";
-	EXPECT_EQ(1, string1.size());
+	ASSERT_EQ(1, string1.size());
 
 	string1 = "12";
-	EXPECT_EQ(2, string1.size());
+	ASSERT_EQ(2, string1.size());
 
 	string1 = "";
-	EXPECT_EQ(0, string1.size());
+	ASSERT_EQ(0, string1.size());
 }
 TEST_F(StringTest, TestOperatorBrackets)
 {
 	string1 = "asdlaga";
-	EXPECT_EQ('a', string1[0]);
-	EXPECT_EQ('s', string1[1]);
-	EXPECT_EQ('d', string1[2]);
-	EXPECT_EQ('l', string1[3]);
-	EXPECT_EQ('a', string1[4]);
-	EXPECT_EQ('g', string1[5]);
-	EXPECT_EQ('a', string1[6]);
+	ASSERT_EQ('a', string1[0]);
+	ASSERT_EQ('s', string1[1]);
+	ASSERT_EQ('d', string1[2]);
+	ASSERT_EQ('l', string1[3]);
+	ASSERT_EQ('a', string1[4]);
+	ASSERT_EQ('g', string1[5]);
+	ASSERT_EQ('a', string1[6]);
 
 }
 TEST_F(StringTest, TestCopy)

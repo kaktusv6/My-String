@@ -67,9 +67,9 @@ char* String::read(int iBegin, int iEnd) const
 {
 	char *c = new char[iEnd - iBegin + 1];
 	int j = 0;
-	for (int i = iBegin; i <= iEnd; ++i, j++)
+	for (int i = iBegin; i < iEnd; ++i, j++)
 		c[j] = srep->str[i];
-	c[j + 1] = '\0';
+	c[j] = '\0';
 	return c;
 }
 int String::size() const
@@ -199,4 +199,11 @@ Sref::Sref(String& str, int _iBegin, int _iEnd) : string(str),
 Sref::operator char*() const
 {
 	return string.read(iBegin, iEnd);
+}
+
+/* friend functions class Sref ======================================= */
+
+bool operator== (const char* ch, const Sref& sref)
+{
+	return strcmp(sref.string.read(sref.iBegin, sref.iEnd), ch) == 0;
 }

@@ -35,13 +35,13 @@ public:
 	Cref operator[](int);
 	char operator[](int) const;
 
-	Sref copy(int, int) const;
+	Sref copy(int, int);
 	void check(int) const;
 	void write(int, char);
 
 	char read(int) const;
 	char* read(int, int) const;
-	
+
 	int size() const;
 	~String();
 };
@@ -81,11 +81,14 @@ public:
 
 class Sref
 {
-	friend  class String;
+	friend class String;
+
 	String& string;
 	int iBegin;
 	int iEnd;
 	Sref(String&, int, int);
+
+	friend bool operator== (const char*, const Sref&);
 public:
 	operator char*() const;
 };

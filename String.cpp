@@ -65,7 +65,7 @@ char String::read(int i) const
 }
 char* String::read(int iBegin, int iEnd) const
 {
-	char *c = new char;
+	char *c = new char[iEnd - iBegin + 1];
 	int j = 0;
 	for (int i = iBegin; i <= iEnd; ++i, j++)
 		c[j] = srep->str[i];

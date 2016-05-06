@@ -63,14 +63,12 @@ char String::read(int i) const
 {
 	return srep->str[i];
 }
-char* String::read(int iBegin, int iEnd) const
+String String::read(int iBegin, int iEnd) const
 {
-	char *c = new char[iEnd - iBegin + 1];
-	int j = 0;
-	for (int i = iBegin; i < iEnd; ++i, j++)
-		c[j] = srep->str[i];
-	c[j] = '\0';
-	return c;
+	String str = "";
+	for (int i = iBegin; i <= iEnd; ++i)
+		str += this->operator[](i);
+	return str;
 }
 int String::size() const
 {
@@ -81,6 +79,14 @@ String& String::operator+= (const String& string)
 	Srep* srep = this->srep->getOwnCopy();
 	strcat(srep->str, string.srep->str);
 	srep->length += string.srep->length;
+	this->srep = srep;
+	return *this;
+}
+String& String::operator+= (const char c)
+{
+	Srep* srep = this->srep->getOwnCopy();
+	srep->str[srep->length] = c;
+	srep->str[++srep->length] = '\0';
 	this->srep = srep;
 	return *this;
 }
@@ -96,7 +102,7 @@ Sref String::copy(int index, int count)
 {
 	check(index);
 	check(index + count);
-	return Sref(*this, index, index + count);
+	return Sref(*this, index, index + count - 1);
 }
 String::~String()
 {
@@ -198,12 +204,12 @@ Sref::Sref(String& str, int _iBegin, int _iEnd) : string(str),
 {  }
 Sref::operator char*() const
 {
-	return string.read(iBegin, iEnd);
+	return string.read(iBegin, iEnd).srep->str;
 }
 
 /* friend functions class Sref ======================================= */
 
-bool operator== (const char* ch, const Sref& sref)
+bool operator== (const Sref& sref, const char* ch)
 {
-	return strcmp(sref.string.read(sref.iBegin, sref.iEnd), ch) == 0;
+	return sref == ch;
 }

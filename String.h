@@ -12,6 +12,7 @@ class Sref;
 
 class String
 {
+	friend class Sref;
 	Srep *srep;
 public:
 	String();
@@ -21,6 +22,7 @@ public:
 	String& operator=(const char*);
 	String& operator=(const String&);
 	String& operator+=(const String&);
+	String& operator+=(const char);
 	String& operator+=(const char*);
 
 	friend std::ostream& operator<< (std::ostream&, const String&);
@@ -40,7 +42,7 @@ public:
 	void write(int, char);
 
 	char read(int) const;
-	char* read(int, int) const;
+	String read(int, int) const;
 
 	int size() const;
 	~String();
@@ -88,7 +90,7 @@ class Sref
 	int iEnd;
 	Sref(String&, int, int);
 
-	friend bool operator== (const char*, const Sref&);
+	friend bool operator== (const Sref&, const char*);
 public:
 	operator char*() const;
 };

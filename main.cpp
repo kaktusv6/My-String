@@ -165,10 +165,8 @@ TEST_F(StringTest, TestOperatorBrackets)
 TEST_F(StringTest, TestCopy)
 {
 	string1 = "hello, World!!";
-//	cout << string1.copy(0, 2) << endl;
 	ASSERT_EQ("he", string1.copy(0, 2));
 	ASSERT_EQ("h", string1.copy(0, 1));
-	ASSERT_EQ("ello", string1.copy(1, 4));
 	ASSERT_EQ("ello", string1.copy(1, 4));
 	ASSERT_EQ("o", string1.copy(4, 1));
 	ASSERT_EQ("o, W", string1.copy(4, 4));
@@ -186,6 +184,8 @@ TEST_F(StringTest, TestException)
 	ASSERT_THROW(string1.copy(0, 19), Range);
 	ASSERT_THROW(string1.copy(-1, 10), Range);
 	ASSERT_THROW(string1.copy(-2, 20), Range);
+	ASSERT_THROW(string1.copy(0, 20), Range);
+	ASSERT_THROW(string1.copy(0, -1), Range);
 }
 int main(int argc, char **argv)
 {

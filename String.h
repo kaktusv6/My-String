@@ -90,9 +90,9 @@ class Sref
 	int iEnd;
 	Sref(String&, int, int);
 
-	friend bool operator== (const Sref&, const char*);
+	friend bool operator== (const char*, const Sref&);
 public:
-	operator char*() const;
+	operator String() const;
 };
 
 class Range

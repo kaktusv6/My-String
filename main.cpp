@@ -165,6 +165,7 @@ TEST_F(StringTest, TestOperatorBrackets)
 TEST_F(StringTest, TestCopy)
 {
 	string1 = "hello, World!!";
+//	cout << string1.copy(0, 2) << endl;
 	ASSERT_EQ("he", string1.copy(0, 2));
 	ASSERT_EQ("h", string1.copy(0, 1));
 	ASSERT_EQ("ello", string1.copy(1, 4));
@@ -174,7 +175,18 @@ TEST_F(StringTest, TestCopy)
 	ASSERT_EQ("", string1.copy(0, 0));
 	ASSERT_EQ("hello, World!!", string1.copy(0, string1.size()));
 }
+TEST_F(StringTest, TestException)
+{
+	string1 = "Hello, my name ...";
+	ASSERT_THROW(string1[18], Range);
+	ASSERT_THROW(string1[19], Range);
+	ASSERT_THROW(string1[-1], Range);
+	ASSERT_THROW(string1[-10], Range);
 
+	ASSERT_THROW(string1.copy(0, 19), Range);
+	ASSERT_THROW(string1.copy(-1, 10), Range);
+	ASSERT_THROW(string1.copy(-2, 20), Range);
+}
 int main(int argc, char **argv)
 {
 	testing::InitGoogleTest(&argc, argv);

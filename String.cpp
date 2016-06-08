@@ -47,12 +47,8 @@ char String::operator[](int i) const
 }
 void String::check(int i) const
 {
-	try
-	{
-		if (i < 0 || srep->length <= i) throw Range();
-	}
-	catch (Range r)
-	{  }
+	if (i < 0 || srep->length <= i)
+		throw Range();
 }
 void String::write(int i, char ch)
 {
@@ -101,7 +97,7 @@ String& String::operator+= (const char* str)
 Sref String::copy(int index, int count)
 {
 	check(index);
-	check(index + count);
+	check(count == 0 ? index : index + count - 1);
 	return Sref(*this, index, index + count - 1);
 }
 String::~String()
@@ -202,14 +198,14 @@ Sref::Sref(String& str, int _iBegin, int _iEnd) : string(str),
 												  iBegin(_iBegin),
 												  iEnd(_iEnd)
 {  }
-Sref::operator char*() const
+Sref::operator String() const
 {
-	return string.read(iBegin, iEnd).srep->str;
+	return string.read(iBegin, iEnd);
 }
 
 /* friend functions class Sref ======================================= */
 
-bool operator== (const Sref& sref, const char* ch)
+bool operator== (const char ch[], const Sref& sref)
 {
 	return sref == ch;
 }
